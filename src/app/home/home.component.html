@@ -1,0 +1,40 @@
+<div>
+
+  <div class="hero">
+    <img src="https://placeholdit.imgix.net/~text?txtsize=99&txt=1920%C3%97800&w=1920&h=800">
+    <div class="text-overlay">
+      <div class="name">Barrel & Brine</div>
+      <div class="tagline">Fine Ferments</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <h1>Deez Picklez</h1>
+    <swiper [config]="config">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img src="http://www.barrelnbrine.com/wp-content/uploads/2016/04/product-fire-ice.png"> </div>
+        <div class="swiper-slide"><img src="http://www.barrelnbrine.com/wp-content/uploads/2016/04/product-fire-ice.png"> </div>
+        <div class="swiper-slide"><img src="http://www.barrelnbrine.com/wp-content/uploads/2016/04/product-fire-ice.png"> </div>
+        <div class="swiper-slide"><img src="http://www.barrelnbrine.com/wp-content/uploads/2016/04/product-fire-ice.png"> </div>
+        <div class="swiper-slide"><img src="http://www.barrelnbrine.com/wp-content/uploads/2016/04/product-fire-ice.png"> </div>
+        <div class="swiper-slide"><img src="http://www.barrelnbrine.com/wp-content/uploads/2016/04/product-fire-ice.png"> </div>
+        <div class="swiper-slide"><img src="http://www.barrelnbrine.com/wp-content/uploads/2016/04/product-fire-ice.png"> </div>
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+      <!-- Add Arrows -->
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </swiper>
+    <!--
+        <input type="text" [value]="localState.value" (input)="localState.value = $event.target.value" autofocus>
+        Rather than wiring up two-way data-binding ourselves with [value] and (input)
+        we can use Angular's [(ngModel)] syntax
+        <input type="text" name="textInput" [(ngModel)]="localState.value" autofocus>
+      -->
+
+    <pre>this.localState = {{ localState | json }}</pre>
+
+  </div>
+
+</div>

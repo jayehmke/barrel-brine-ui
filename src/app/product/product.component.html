@@ -1,0 +1,16 @@
+<div>
+  <md-tab-group>
+    <md-tab *ngFor="let category of categoryData;">
+      <ng-template md-tab-label>
+        <md-icon svgIcon='{{ category.category.icon }}'></md-icon> {{ category.category.name }}
+      </ng-template>
+      <h1>{{ category.name }}</h1>
+      <div *ngFor="let product of category.products">
+
+        {{ product.name }}
+
+      </div>
+      <p>...</p>
+    </md-tab>
+  </md-tab-group>
+</div>

@@ -1,0 +1,112 @@
+<div class="locations">
+  <agm-map
+    class="location-map"
+    [latitude]="lat"
+    [longitude]="lng"
+    [zoom]="zoom"
+    [disableDefaultUI]="false"
+    [zoomControl]="true">
+
+    <agm-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="false">
+
+      <agm-info-window>
+        <strong>InfoWindow content</strong>
+      </agm-info-window>
+
+    </agm-marker>
+
+  </agm-map>
+  <div class="content">
+    <h1>Locations</h1>
+
+    <div>
+      <div fxLayout="row" fxLayout.xs="column" fxFlex>
+        <p-accordion fxFlex="100%" fxFlex.gt-xs="33%" [multiple]="false">
+          <p-accordionTab header="Filters" [selected]="openFilters">
+            <div fxLayout="row">
+              <div fxFlex="80">
+                <md-input-container class="full-width">
+                  <input mdInput [ngModel]="zipCode" (ngModelChange)="zipCode = $event" maxlength="5" placeholder="Zip Code">
+                  <md-hint align="start"><strong>Enter Zip Code to Find Locations Near You</strong></md-hint>
+                </md-input-container>
+              </div>
+              <div fxFlex="10" style="padding-top:10px;">
+                <button  (click)="getByZip()" md-icon-button>
+                  <md-icon>search</md-icon>
+                </button>
+              </div>
+              <div fxFlex="10" style="padding-top:10px;">
+                <button  (click)="requestUserLocation()" md-icon-button>
+                  <md-icon>my_location</md-icon>
+                </button>
+              </div>
+            </div>
+            <md-slider
+              class="full-width range-slider"
+              [max]="max"
+              [min]="min"
+              [step]="step"
+              [thumb-label]="true"
+              [tick-interval]="1"
+              [value]="distance"
+              (change)="onDistanceChange($event)"
+            >
+            </md-slider>
+            <div>Distance</div>
+            <h4>Show Only Locations With:</h4>
+            <md-button-toggle-group class="full-width" vertical multiple #group="mdButtonToggleGroup">
+
+              <md-button-toggle *ngFor="let category of categories; let i = index" value="{{ category.name }}"
+                                (click)="toggleProduct(i)">
+                <md-icon svgIcon='{{ category.icon }}'></md-icon>
+                {{ category.name }}
+              </md-button-toggle>
+            </md-button-toggle-group>
+          </p-accordionTab>
+        </p-accordion>
+
+        <div fxFlex="100%" fxFlex.gt-xs="67%" ngClass.gt-xs="location-list" fxLayout="row" fxLayout.xs="column" fxFlex>
+          <div fxFlex.gt-xs="50%" class="location-item" *ngFor="let location of locations; let i = index">
+            <md-card>
+              <md-card-title>{{ location.name }}</md-card-title>
+              <md-card-subtitle>{{ location.address.street1 }} {{ location.address.street2 }}</md-card-subtitle>
+              <md-card-subtitle>{{ location.address.suburb }}, {{ location.address.state }} {{ location.address.postcode }}</md-card-subtitle>
+              <md-card-content>
+                <agm-map
+                  class="grid-map"
+                  [latitude]="location.address.geo[1]"
+                  [longitude]="location.address.geo[0]"
+                  [zoom]="18"
+                  [disableDefaultUI]="true"
+                  gestureHandling="none"
+                  [mapDraggable]="false"
+                  [scrollwheel]="false"
+                  [zoomControl]="false">
+
+                  <agm-marker
+                    [latitude]="location.address.geo[1]"
+                    [longitude]="location.address.geo[0]"
+                    [markerDraggable]="false"
+                  >
+                  </agm-marker>
+                </agm-map>
+              </md-card-content>
+              <md-card-actions>
+                <button md-button>Get Directions</button>
+              </md-card-actions>
+            </md-card>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

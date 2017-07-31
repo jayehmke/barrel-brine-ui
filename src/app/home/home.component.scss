@@ -1,0 +1,37 @@
+.hero {
+  display: table;
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  .text-overlay {
+
+    margin-top: -60px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    width: 100%;
+
+    .name {
+      font-size: 3em;
+      font-weight: bold;
+    }
+
+    .tagline {
+      font-size: 1.5em;
+    }
+
+  }
+
+}
+
+.swiper-wrapper {
+
+  .swiper-slide {
+    img {
+      width: 100%;
+    }
+  }
+}
