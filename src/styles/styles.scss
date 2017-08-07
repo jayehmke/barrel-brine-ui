@@ -6,15 +6,16 @@
 body {
   padding: 0;
   margin: 0;
+  @font-face {
+    font-family: 'Roboto', sans-serif;
+  }
+
 }
 
 nav {
   margin-top: 16px;
 }
 
-.app-container {
-  height: 100%;
-}
 
 nav a {
   background-color: $nav-button-color;
@@ -30,13 +31,25 @@ nav a {
 
 h1 {
   color: mat-color($bb-app-primary);
+  @font-face {
+    font-family: 'Roboto', sans-serif;
+  }
 }
 
 footer {
-  height: 100px;
   background-color: mat-color($bb-app-background);
+}
+
+.app-container {
+  height: 100%;
 }
 
 .content {
   padding: 30px;
+}
+
+.mat-sidenav-container {
+  @font-face {
+    font-family: 'Roboto', sans-serif;
+  }
 }

@@ -3,29 +3,19 @@ import {
   OnInit
 } from '@angular/core';
 
-import { AppState } from '../app.service';
-import { Title } from './title';
+import {AppState} from '../app.service';
+import {Title} from './title';
+import {BannerService} from '../lib/banner/banner.service';
+import {ProductService} from '../lib/product/product.service';
 
 @Component({
-  /**
-   * The selector is what angular internally uses
-   * for `document.querySelectorAll(selector)` in our index.html
-   * where, in this case, selector is the string 'home'.
-   */
   selector: 'home',  // <home></home>
-  /**
-   * We need to tell Angular's Dependency Injection which providers are in our app.
-   */
   providers: [
-    Title
+    Title,
+    BannerService,
+    ProductService,
   ],
-  /**
-   * Our list of styles in our component. We may add more to compose many styles together.
-   */
-  styleUrls: [ './home.component.scss' ],
-  /**
-   * Every Angular template is first compiled by the browser before Angular runs it's compiler.
-   */
+  styleUrls: ['./home.component.scss'],
   templateUrl: './home.component.html'
 })
 export class HomeComponent implements OnInit {
@@ -39,24 +29,60 @@ export class HomeComponent implements OnInit {
 
     slidesPerView: 3,
   };
+
+  public selectedTab: any;
+
+  public banners: any;
+  public products: any;
+
   /**
    * Set our default values
    */
-  public localState = { value: '' };
+  public localState = {value: ''};
+
   /**
    * TypeScript public modifiers
    */
-  constructor(
-    public appState: AppState,
-    public title: Title
-  ) {}
+  constructor(public appState: AppState,
+              public title: Title,
+              public productService: ProductService,
+              public bannerService: BannerService,) {
+  }
 
   public ngOnInit() {
-    console.log('hello `Home` component');
-    /**
-     * this.title.getData().subscribe(data => this.data = data);
-     */
+
+    this.banners = [];
+    this.products = [];
+    this.selectedTab = 0;
+
+    this.startTimer();
+
+
+    this.bannerService.getData().subscribe((data) => {
+
+      this.banners = data['banners'];
+
+    });
+
+    this.productService.getData().subscribe((data) => {
+
+      this.products = data['products'];
+
+    });
+
+
   }
+
+  public startTimer = () => {
+    setTimeout(() => {
+      this.selectedTab += 1;
+      this.startTimer();
+      if (this.selectedTab >= this.banners.length) {
+        this.selectedTab = 0;
+      }
+
+    }, 3000);
+  };
 
   public submitState(value: string) {
     console.log('submitState', value);

@@ -1,6 +1,16 @@
-html, body{
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i');
+
+html, body {
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif
+  @font-face {
+    font-family: 'Roboto', sans-serif;
+  }
+}
+
+h1 {
+  @font-face {
+    font-family: 'Roboto', sans-serif;
+  }
 }
 
 a.active {
@@ -13,7 +23,6 @@ a.active {
     min-width: 100%;
   }
 }
-
 
 .ui-accordion .ui-accordion-header a {
   display: block;
@@ -34,7 +43,6 @@ a.active {
   width: 100%;
 }
 
-
 @mixin circle($width: 100px, $height: 100px) {
   border-radius: 50%;
   width: $width;
@@ -54,4 +62,8 @@ a.active {
   background-color: #A7D28B !important;
   border: 2px solid #79B15A !important;
   @include grilled(#FEF7B9, #A7D28B);
+}
+
+.footer-column {
+  padding: 1em;
 }

@@ -1,0 +1,50 @@
+<md-sidenav-container class="app-container  mat-app-background">
+  <md-sidenav #sidenav class="sidenav">
+    <md-nav-list>
+      <md-list-item *ngFor="let link of links">
+        <a md-button [routerLink]="link.href"> {{ link.title }} </a>
+        <br/>
+      </md-list-item>
+    </md-nav-list>
+  </md-sidenav>
+
+  <div class="main-content  mat-app-background">
+    <!--<button md-button (click)="sidenav.open()">-->
+    <!--Open sidenav-->
+    <!--</button>-->
+    <main>
+      <md-toolbar color="primary">
+
+            <span class="toolbar-icon-button" fxHide.gt-sm="true">
+              <button type="button" md-button (click)="sidenav.open()">
+                <md-icon>menu</md-icon>
+              </button>
+
+            </span>
+        <span>Barrel & Brine</span>
+        <span fxHide.lt-md="true">
+              <span *ngFor="let link of links"><a md-button [routerLink]="link.href">{{ link.title }}</a></span>
+            </span>
+      </md-toolbar>
+      <router-outlet></router-outlet>
+    </main>
+    <footer class="mat-typography">
+      <div class="footer-column" fxFlex fxFlex.gt-sm="33.33" >
+        <h3>Handmade pickles & fermented goods</h3>
+        <p>Made daily in Buffalo, NY. </p>
+      </div>
+      <div class="footer-column" fxFlex fxFlex.gt-sm="33.33" >
+        <h3>Social</h3>
+      </div>
+      <div class="footer-column" fxFlex fxFlex.gt-sm="33.33" >
+        <h3>Barrel & Brine</h3>
+        <h4><a href="tel:716-322-5756">(716) 322-5756</a></h4>
+        <p>
+          257 Carolina St<br />
+          Buffalo, NY
+        </p>
+      </div>
+    </footer>
+  </div>
+
+</md-sidenav-container>

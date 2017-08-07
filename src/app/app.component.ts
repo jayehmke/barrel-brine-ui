@@ -21,46 +21,31 @@ import { AppState } from './app.service';
   styleUrls: [
     './app.component.scss'
   ],
-  template: `
-    <md-sidenav-container class="app-container  mat-app-background">
-      <md-sidenav #sidenav class="sidenav">
-        Jolly good!
-      </md-sidenav>
-
-      <div class="main-content  mat-app-background">
-        <!--<button md-button (click)="sidenav.open()">-->
-        <!--Open sidenav-->
-        <!--</button>-->
-        <main>
-          <md-toolbar color="primary">
-            
-            <span class="toolbar-icon-button">
-              <button type="button" md-button (click)="sidenav.open()">
-                <md-icon>menu</md-icon>
-              </button>
-              
-            </span>
-            <span>Barrel & Brine</span>
-            <span fxHide.lt-md="true">
-              <span><a md-button routerLink=".">Home</a></span>
-              <span><a md-button routerLink="/locations">Locations</a></span>
-              <span><a md-button routerLink="/products">Products</a></span>
-            </span>
-          </md-toolbar>
-          <router-outlet></router-outlet>
-        </main>
-        <!--<footer fxLayout="row" fxFlex>-->
-          <!--<span>Barrel & Brine</span>-->
-        <!--</footer>-->
-      </div>
-
-    </md-sidenav-container>
-  `
+  templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
   public angularclassLogo = 'assets/img/angularclass-avatar.png';
   public name = 'Angular 2 Webpack Starter';
   public url = 'https://twitter.com/AngularClass';
+
+  public links = [
+    {
+      title: 'Home',
+      href: '/',
+    },
+    {
+      title: 'Locations',
+      href: '/locations',
+    },
+    {
+      title: 'Products',
+      href: '/products',
+    },
+    {
+      title: 'FAQs',
+      href: '/faqs',
+    }
+  ];
 
   constructor(public appState: AppState,
               iconRegistry: MdIconRegistry,
