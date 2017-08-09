@@ -33,6 +33,7 @@ import {
   RouterModule,
   PreloadAllModules
 } from '@angular/router';
+import { FacebookModule } from 'ngx-facebook';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -90,6 +91,7 @@ type StoreType = {
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDAmWmYR440qnn5BRZ1vnHo7Ysb2-m8NJ0'
     }),
+    FacebookModule.forRoot(),
     FlexLayoutModule,
     BrowserAnimationsModule,
     SwiperModule,

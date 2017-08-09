@@ -7,6 +7,8 @@ import {AppState} from '../app.service';
 import {Title} from './title';
 import {BannerService} from '../lib/banner/banner.service';
 import {ProductService} from '../lib/product/product.service';
+import {InstagramService} from '../lib/instagram/instagram.service';
+import { FacebookService, InitParams } from 'ngx-facebook';
 
 @Component({
   selector: 'home',  // <home></home>
@@ -14,6 +16,7 @@ import {ProductService} from '../lib/product/product.service';
     Title,
     BannerService,
     ProductService,
+    InstagramService,
   ],
   styleUrls: ['./home.component.scss'],
   templateUrl: './home.component.html'
@@ -34,6 +37,7 @@ export class HomeComponent implements OnInit {
 
   public banners: any;
   public products: any;
+  public igPics: any;
 
   /**
    * Set our default values
@@ -46,13 +50,16 @@ export class HomeComponent implements OnInit {
   constructor(public appState: AppState,
               public title: Title,
               public productService: ProductService,
-              public bannerService: BannerService,) {
+              public bannerService: BannerService,
+              public fb: FacebookService,
+              public igService: InstagramService,) {
   }
 
   public ngOnInit() {
 
     this.banners = [];
     this.products = [];
+    this.igPics = [];
     this.selectedTab = 0;
 
     this.startTimer();
@@ -69,6 +76,20 @@ export class HomeComponent implements OnInit {
       this.products = data['products'];
 
     });
+
+    this.igService.getData().subscribe((data) => {
+
+      this.igPics = data['photos'];
+
+    });
+
+    let initParams: InitParams = {
+      appId: '328006423973978',
+      xfbml: true,
+      version: 'v2.8'
+    };
+
+    this.fb.init(initParams);
 
 
   }

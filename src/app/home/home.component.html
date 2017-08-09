@@ -28,6 +28,23 @@
         <div class="swiper-button-prev"></div>
       </swiper>
 
+
+      <swiper [config]="config">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" *ngFor="let photo of igPics; let i = index">
+            <img [src]="photo.images.low_resolution.url">
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+      </swiper>
+
+
+      <div class="social gray-bg">
+        <fb-like href="https://www.facebook.com/barrelnbrine"></fb-like>
+      </div>
+
     </div>
   </section>
 
